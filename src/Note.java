@@ -40,25 +40,10 @@ public class Note {
         this.titleNote = titleNote;
         this.textNote = textNote;
         this.addDate = addDate;
-        this.modifyDate = addDate;
+        this.modifyDate = modifyDate;
+    }
+    public void modifyNote(){
+
     }
 
-    List<Note> noteList = new ArrayList<Note>();
-
-    public List<Note> getNoteList() {
-        return noteList;
-    }
-    public void findInNoteListbyTitel(String titleNote) {
-        int find = 0;
-     for (int i=0; i<noteList.size();i++){
-         if (Objects.equals(titleNote, noteList.get(i).titleNote)){
-             System.out.println("Текст нотатки"+ noteList.get(i).textNote);
-             find=1;
-             break;
-         }
-     }
-     if(find ==0){
-         System.out.println("У вас немає нотатки з таким заголовком");
-     }
-    }
 }
