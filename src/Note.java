@@ -45,5 +45,7 @@ public class Note {
     public void modifyNote(){
 
     }
+    public void delNote(){
 
+    }
 }
