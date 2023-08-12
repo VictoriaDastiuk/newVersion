@@ -21,7 +21,6 @@ public class Profile {
         this.Name=Name;
         this.email=email;
         emails.add(email);
-        System.out.println("к-ть емейлів"+emails.size());
     }
     int sameEmail = 0;
     public void checkEmail (){

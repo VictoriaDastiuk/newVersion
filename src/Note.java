@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,8 +10,8 @@ public class Note {
     String titleNote;
     String textNote;
 
-    Date addDate;
-    Date modifyDate;
+    String addDate;
+    String modifyDate;
 
     public String getNameNote() {
         return nameNote;
@@ -35,13 +37,18 @@ public class Note {
         this.textNote = textNote;
     }
 
-    public Note(String nameNote, String titleNote, String textNote, Date addDate, Date modifyDate) {
+    public Note(String nameNote, String titleNote, String textNote, String addDate, String modifyDate) {
         this.nameNote = nameNote;
         this.titleNote = titleNote;
         this.textNote = textNote;
         this.addDate = addDate;
         this.modifyDate = modifyDate;
+        System.out.println("Нотатку успішно створено!");
     }
+    public void sendLastNote(){
+        int numberNote = noteList.size();
+    }
+
     public void modifyNote(){
 
     }
