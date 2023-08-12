@@ -1,6 +1,10 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -42,7 +46,8 @@ public class Main {
                 String wantToSaveNote = scanner.nextLine();
                 if ((wantToSaveNote.equals("так")) || (wantToSaveNote.equals("да"))){
 //                    тут має бути метод збереження нотатки в файл
-//                    SendInFile();
+
+
                 }
 
             }

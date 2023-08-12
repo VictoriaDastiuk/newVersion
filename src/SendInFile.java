@@ -6,11 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class SendInFile extends ObjectOutputStream {
+        SendInFile noteSend = new SendInFile(Files.newOutputStream(Paths.get("MyNote.txt")), myNote);
 
-    public SendInFile(OutputStream out, Object Note) throws IOException {
+    public SendInFile(OutputStream out) throws IOException {
         super(out);
-        SendInFile noteSend = new SendInFile(Files.newOutputStream(Paths.get("MyNote.txt")), Note);
-        noteSend.writeObject(Note);
+    }
+
+    protected SendInFile() throws IOException, SecurityException {
+    }
+        noteSend.writeObject(myNote);
         noteSend.close();
     }
-}
+

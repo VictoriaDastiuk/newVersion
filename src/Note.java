@@ -45,9 +45,6 @@ public class Note {
         this.modifyDate = modifyDate;
         System.out.println("Нотатку успішно створено!");
     }
-    public void sendLastNote(){
-        int numberNote = noteList.size();
-    }
 
     public void modifyNote(){
 
