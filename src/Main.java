@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -8,7 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    private static boolean dontOther = true;
+
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
 //        Cтворення користувача і перевірка емейлу раніше використовуваних
@@ -20,6 +23,8 @@ public class Main {
         person.checkEmail();
 
         do {
+            String doOther;
+
 // Що хоче зробити створити нову, змінити стару, переглянути список нотаток, видалити?
             System.out.println("Напишіть що бажаєте зробити: створити нову, змінити стару, переглянути список нотаток, видалити нотатку, вивантажити в файл?");
             String answerWhatToDo = scanner.nextLine();
@@ -44,14 +49,20 @@ public class Main {
             // Зберегти в файл?
                 System.out.println("Бажаєте зберегти цю нотатку в файл?");
                 String wantToSaveNote = scanner.nextLine();
+
                 if ((wantToSaveNote.equals("так")) || (wantToSaveNote.equals("да"))){
-//                    тут має бути метод збереження нотатки в файл
-
-
+            // тут має бути метод збереження нотатки в файл
+                SendInFile NoteinFile = new SendInFile(namenote, title, bodynote);
                 }
 
-            }
-        } while ()
+            // Бажаєте ще якусь дію здійснити?
+                System.out.println("Бажаєте ще якусь дію здійснити?");
+                doOther = scanner.nextLine();
+                if((!doOther.equals("так")) || (!doOther.equals("да"))) {
+                    dontOther = false;
+                }
 
-    }
+        }
+    }while (!dontOther);
+}
 }

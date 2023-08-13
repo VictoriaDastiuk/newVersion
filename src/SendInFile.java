@@ -1,20 +1,18 @@
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
-public class SendInFile extends ObjectOutputStream {
-        SendInFile noteSend = new SendInFile(Files.newOutputStream(Paths.get("MyNote.txt")), myNote);
+public class SendInFile {
+    public SendInFile(String name, String title, String text) throws IOException {
+            try(FileWriter SendInFile = new FileWriter("myNote.txt")) {
+                SendInFile.write(name);
+                SendInFile.write(title);
+                SendInFile.write(text);
+                System.out.println("Нотатку записаноу файл!");
+            }
+            catch (IOException e){
+                System.out.println("Сталась помилка при завантаженні у файл.");
+            }
 
-    public SendInFile(OutputStream out) throws IOException {
-        super(out);
     }
-
-    protected SendInFile() throws IOException, SecurityException {
-    }
-        noteSend.writeObject(myNote);
-        noteSend.close();
-    }
+}
 
