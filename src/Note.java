@@ -46,10 +46,5 @@ public class Note {
         System.out.println("Нотатку успішно створено!");
     }
 
-    public void modifyNote(){
 
-    }
-    public void delNote(){
-
-    }
 }

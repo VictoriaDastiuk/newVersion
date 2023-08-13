@@ -27,6 +27,25 @@ public class NoteList {
         return resultFind;
     }
 
+//    Знайти по назві нотатку
+    public String findInNoteListbyName(String paramToFind) {
+        String resultFind;
+        int find = 0;
+        for (int i=0; i<noteList.size();i++){
+            if (Objects.equals(paramToFind, noteList.get(i).nameNote)){
+                System.out.println("Текст нотатки"+ noteList.get(i).textNote);
+                paramToFind = Integer.toString(i);
+                find=1;
+                break;
+            }
+        }
+        if(find ==0){
+            paramToFind = "notfound";
+            System.out.println("У вас немає нотатки з такою назвою");
+        }
+        return paramToFind;
+    }
+
 //    Розмір списку нотаток
     public String getSizeLIst(String size){
         if (noteList.isEmpty()){
@@ -36,8 +55,6 @@ public class NoteList {
         }
     return size;
     }
-
-//    Знайти останню в листі
 
 
 
