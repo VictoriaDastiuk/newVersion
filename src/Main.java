@@ -189,8 +189,8 @@ public class Main {
 
 
     //ПЕРЕГЛЯНУТИ НОТАТКУ
-
-
+            if (answerWhatToDo.equals("переглянути нотатку")) {
+            }
 
     //ВИДАЛИТИ НОТАТКУ
 
