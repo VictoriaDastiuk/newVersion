@@ -4,59 +4,57 @@ import java.util.Objects;
 
 public class NoteList {
 
-    List<Note> noteList = new ArrayList<Note>();
+    public static List<Note> noteList = new ArrayList<Note>();
 
 
-    public List<Note> getNoteList() {
+    public static List<Note> getNoteList() {
         return noteList;
     }
 
 //    Знайти по заголовку нотатку
-    public String findInNoteListbyTitel(String resultFind, String titleNote) {
-        int find = 0;
-        for (int i=0; i<noteList.size();i++){
-            if (Objects.equals(titleNote, noteList.get(i).titleNote)){
-                resultFind = "Текст нотатки"+ noteList.get(i).textNote;
-                find=1;
-                break;
-            }
-        }
-        if(find ==0){
-            resultFind = "У вас немає нотатки з таким заголовком";
-        }
-        return resultFind;
+    public static Note findInNoteListbyTitle(String title) {
+       for (Note note : noteList)
+       {
+           if (note.getTitleNote().equals(title))
+           {
+               return note;
+           }
+       }
+        return null;
+    }
+    //    Індекс нотатки в списку по заголовку
+    public static int findIndexbyTitle(String title) {
+        int index = noteList.indexOf(findInNoteListbyTitle(title));
+        return index;
     }
 
 //    Знайти по назві нотатку
-    public String findInNoteListbyName(String paramToFind) {
-        String resultFind;
-        int find = 0;
-        for (int i=0; i<noteList.size();i++){
-            if (Objects.equals(paramToFind, noteList.get(i).nameNote)){
-                System.out.println("Текст нотатки"+ noteList.get(i).textNote);
-                paramToFind = Integer.toString(i);
-                find=1;
-                break;
+    public static Note findInNoteListbyName(String name) {
+        for (Note note : noteList)
+        {
+            if (note.getTitleNote().equals(name))
+            {
+                return note;
             }
         }
-        if(find ==0){
-            paramToFind = "notfound";
-            System.out.println("У вас немає нотатки з такою назвою");
-        }
-        return paramToFind;
+        return null;
     }
+    //    Індекс нотатки в списку по назві
+    public static int findIndexbyName(String name) {
+        int index = noteList.indexOf(findInNoteListbyTitle(name));
+        return index;
+    }
+
 
 //    Розмір списку нотаток
-    public String getSizeLIst(String size){
-        if (noteList.isEmpty()){
-            System.out.println("У вас немає нотаток!");
-    }else {
-            size = Integer.toString(noteList.size());
-        }
-    return size;
+    public int getSizeLIst(){
+        return noteList.size();
     }
 
 
-
+    //   Зміна нотатки
+    public static void changeNote (int index, Object noteNew) {
+        noteList.set(index, (Note) noteNew);
+    }
 
 }

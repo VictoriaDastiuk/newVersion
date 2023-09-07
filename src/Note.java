@@ -43,7 +43,6 @@ public class Note {
         this.textNote = textNote;
         this.addDate = addDate;
         this.modifyDate = modifyDate;
-        System.out.println("Нотатку успішно створено!");
     }
 
 
