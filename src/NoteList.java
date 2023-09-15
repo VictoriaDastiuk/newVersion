@@ -41,8 +41,7 @@ public class NoteList {
     }
     //    Індекс нотатки в списку по назві
     public static int findIndexbyName(String name) {
-        int index = noteList.indexOf(findInNoteListbyTitle(name));
-        return index;
+        return noteList.indexOf(findInNoteListbyTitle(name));
     }
 
 
