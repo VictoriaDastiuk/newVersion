@@ -53,7 +53,7 @@ public class Main {
                     //айдішнік нотатки виводить
                     resultOfFindNote = NoteList.howFindNote(howFind,paramToFind);
 
-                    if (resultOfFindNote.equals(null)){
+                    if (resultOfFindNote == null){
                             //якшо не нашли нотатку
                             WrittingForClient.dontFind();
                         }
