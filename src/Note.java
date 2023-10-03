@@ -1,9 +1,7 @@
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.security.PrivateKey;
+import java.util.*;
 
 public class Note {
     String nameNote;
@@ -12,6 +10,8 @@ public class Note {
 
     String addDate;
     String modifyDate;
+    private String statusNote;
+    private UUID id;
 
     public String getNameNote() {
         return nameNote;
@@ -20,7 +20,6 @@ public class Note {
     public void setNameNote(String nameNote) {
         this.nameNote = nameNote;
     }
-
     public String getTitleNote() {
         return titleNote;
     }
@@ -37,13 +36,25 @@ public class Note {
         this.textNote = textNote;
     }
 
+    public String getStatusNote() {
+        return statusNote;
+    }
+
+    public void setStatusNote(String statusNote) {
+        this.statusNote = statusNote;
+    }
+
     public Note(String nameNote, String titleNote, String textNote, String addDate, String modifyDate) {
         this.nameNote = nameNote;
         this.titleNote = titleNote;
         this.textNote = textNote;
         this.addDate = addDate;
         this.modifyDate = modifyDate;
+        this.statusNote = "Created";
+        this.id = UUID.randomUUID();
     }
 
-
+    public UUID getId() {
+        return id;
+    }
 }

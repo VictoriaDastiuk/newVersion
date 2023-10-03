@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Profile {
     String Name;
     String email;
-    List<String> emails = new ArrayList<>();
-    int sameEmail = 0;
+    private UUID id;
 
     public String getName() {
         return Name;
@@ -22,20 +22,5 @@ public class Profile {
     public Profile(String Name, String email){
         this.Name=Name;
         this.email=email;
-        emails.add(email);
     }
-    public int checkEmail (){
-        int i=0;
-        if(emails.size()>1){
-        while(i<emails.size()){
-            if(emails.get(i).equals(email)){
-                emails.remove(i);
-                sameEmail = 1;
-                break;
-            }
-            i++;
-        }
-
-        }
-    return sameEmail;
-    }}
+   }

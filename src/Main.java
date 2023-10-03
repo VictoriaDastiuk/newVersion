@@ -5,6 +5,11 @@ import java.util.*;
 
 public class Main {
     static String doOther;
+    static String answer = "так";
+    static String paramToFind;
+    static String howFind;
+    static UUID resultOfFindNote;
+    static String whatChange;
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
@@ -13,37 +18,31 @@ public class Main {
         WrittingForClient.newProfile();
 
         do {
+            WrittingForClient.whatToDO();
             // Що хоче зробити створити нову, змінити стару, переглянути список нотаток, видалити?
-            String answerWhatToDo = scanner.nextLine();
+            int answerWhatToDo = Integer.parseInt(scanner.nextLine());
 
-    // СТВОРИТИ НОТАТКУ
-            if (answerWhatToDo.equals("створити нову")) {
-
-            // введіть назву, текст, заголовок
-                WrittingForClient.newNote();
-
-            // Зберегти в файл?
-                WrittingForClient.WriteSaveInFileNote();
-                String wantToSaveNote = scanner.nextLine();
-
-                if ((wantToSaveNote.equals("так")) || (wantToSaveNote.equals("да"))){
-            // тут має бути метод збереження нотатки в файл
-
-
-                }
-            }
+            switch (answerWhatToDo) {
 
 
 
+                // СТВОРИТИ НОТАТКУ
+                case 1:
+                       // введіть назву, текст, заголовок
+                        WrittingForClient.newNote();
 
-    //ЗМІНИТИ НОТАТКУ
-            if (answerWhatToDo.equals("змінити нотатку")) {
-                String answer = "так";
-                String paramToFind;
-                String howFind;
-                int indexNote = 0;
+                        // Зберегти в файл?
+                        WrittingForClient.WriteSaveInFileNote();
+                        String wantToSaveNote = scanner.nextLine();
 
-                do {
+                        if ((wantToSaveNote.equals("так")) || (wantToSaveNote.equals("да"))){
+                            // тут має бути метод збереження нотатки в файл
+                        }
+
+
+
+                //ЗМІНИТИ НОТАТКУ
+                case 2:
                     // по чому робим пошук нотатки?
                     WrittingForClient.howFind();
                     howFind = scanner.nextLine();
@@ -51,59 +50,46 @@ public class Main {
                     WrittingForClient.writeParam();
                     paramToFind = scanner.nextLine();
 
-                    //  пошук нотатки по параметру
-                    if (howFind == "заголовок"){
-                        Note note = NoteList.findInNoteListbyTitle(paramToFind);
-                        if (note == null){
+                    //айдішнік нотатки виводить
+                    resultOfFindNote = NoteList.howFindNote(howFind,paramToFind);
+
+                    if (resultOfFindNote.equals(null)){
                             //якшо не нашли нотатку
-                            WrittingForClient.FindOneMoreTime();
-                            answer = scanner.nextLine();
+                            WrittingForClient.dontFind();
                         }
                         else {
-                            // Викликаєм метод шо міняти в нотатці
-                            WrittingForClient.whatChange(indexNote,note);
-                            WrittingForClient.DoSmthMore();
-                            doOther = scanner.nextLine();
-                        }
+                            // питаєм шо міняти в нотатці
+                            WrittingForClient.whatChange();
+                            whatChange = scanner.nextLine();
+
+                            //введення нового значення
+                            WrittingForClient.addNew(whatChange);
+                            String param = scanner.nextLine();
+
+
+                        //resultOfFindNote - ID Note
+                        //param - нове значення параметру який міняєм
+                        //whatChange - що треба змінити в нотатці
+                        NoteList.changeNote(resultOfFindNote,param,whatChange);
+
+                        System.out.println("Нотатка успішно змінена.");
                     }
-                    if (howFind == "назва"){
-                        Note note = NoteList.findInNoteListbyName(paramToFind);
-                        if (note == null){
-                            //якшо не нашли нотатку
-                            WrittingForClient.FindOneMoreTime();
-                            answer = scanner.nextLine();
+
+
+
+                //ПЕРЕГЛЯНУТИ ВСІ НОТАТКИ
+                case 3:
+                        for (Note note : NoteList.getNoteList()) {
+                            if (note.getStatusNote().equals("Created") || note.getStatusNote().equals("Modified"))
+                            {
+                                System.out.println(note.getNameNote() + ": " + note.getTitleNote() + " Текст нотатки:" + note.getTextNote());
+                            }
                         }
-                        else {
-                            // Викликаєм метод шо міняти в нотатці
-                            WrittingForClient.whatChange(indexNote,note);
-                            WrittingForClient.DoSmthMore();
-                            doOther = scanner.nextLine();
-                        }
-                    }
-                    } while (answer.equals("так") || answer.equals("да"));
-            }
-
-
-    //ПЕРЕГЛЯНУТИ ВСІ НОТАТКИ
-
-            if (answerWhatToDo.equals("переглянути всі нотатки"))
-            {
-                for (Note note : NoteList.getNoteList())
-                {
-                    System.out.println(note.getNameNote() + ": "+ note.getTitleNote() + " Текст нотатки:" + note.getTextNote());
-                }
-            }
 
 
 
-    //ПЕРЕГЛЯНУТИ НОТАТКУ
-            if (answerWhatToDo.equals("переглянути нотатку")) {
-                String answer = "так";
-                String paramToFind;
-                String howFind;
-                int indexNote = 0;
-
-                do {
+                //ПЕРЕГЛЯНУТИ НОТАТКУ
+                case 4:
                     // по чому робим пошук нотатки?
                     WrittingForClient.howFind();
                     howFind = scanner.nextLine();
@@ -111,44 +97,43 @@ public class Main {
                     WrittingForClient.writeParam();
                     paramToFind = scanner.nextLine();
 
-                    //  пошук нотатки по параметру
-                    if (howFind == "заголовок") {
-                        Note note = NoteList.findInNoteListbyTitle(paramToFind);
-                        if (note == null) {
-                            //якшо не нашли нотатку
-                            WrittingForClient.FindOneMoreTime();
-                            answer = scanner.nextLine();
-                        } else {
-                            //показуємо текст нотатки
-                            System.out.println(note.getNameNote() + ": " + note.getTitleNote() + " Текст нотатки:" + note.getTextNote());
-                            doOther = scanner.nextLine();
-                        }
+                    //айдішнік нотатки виводить
+                    resultOfFindNote = NoteList.howFindNote(howFind,paramToFind);
+
+                    if (resultOfFindNote == null){
+                        //якшо не нашли нотатку
+                        WrittingForClient.dontFind();
                     }
-                    if (howFind == "назва") {
-                        Note note = NoteList.findInNoteListbyName(paramToFind);
-                        if (note == null) {
-                            //якшо не нашли нотатку
-                            WrittingForClient.FindOneMoreTime();
-                            answer = scanner.nextLine();
-                        } else {
-                            //показуємо текст нотатки
-                            System.out.println(note.getNameNote() + ": " + note.getTitleNote() + " Текст нотатки:" + note.getTextNote());
-                            doOther = scanner.nextLine();
-                        }
+                    else {
+                     WrittingForClient.showNote(resultOfFindNote);
                     }
-                } while (answer.equals("так") || answer.equals("да"));
-            }
-    //ВИДАЛИТИ НОТАТКУ
 
 
 
-    //ВИВАНТАЖИТИ НОТАТКИ
+                //ВИДАЛИТИ НОТАТКУ
+                case 5:
+                    // по чому робим пошук нотатки?
+                    WrittingForClient.howFind();
+                    howFind = scanner.nextLine();
 
+                    WrittingForClient.writeParam();
+                    paramToFind = scanner.nextLine();
 
+                    //айдішнік нотатки виводить
+                    resultOfFindNote = NoteList.howFindNote(howFind,paramToFind);
 
+                    if (resultOfFindNote == null){
+                        //якшо не нашли нотатку
+                        WrittingForClient.dontFind();
+                    }
+                    else {
+                        WrittingForClient.showNote(resultOfFindNote);
+                    }
 
+                //ВИВАНТАЖИТИ НОТАТКИ
+                case 6:
 
-
+                    }
 
             // Бажаєте ще якусь дію здійснити?
             WrittingForClient.DoSmthMore();
