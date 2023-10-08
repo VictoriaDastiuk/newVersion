@@ -30,35 +30,33 @@ public class WrittingForClient {
             System.out.println("Введіть новий текст для нотатки");
         }
     }
-
-    public static void newNote() {
-        //  визначення сьогоднішньої дати
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = dateFormat.format(date);
-
+    public static void printNameNote() {
         System.out.println("Ввведіть назву для нотатки: ");
-        String namenote = scanner.nextLine();
-        System.out.println("Ввведіть заголовок для нотатки: ");
-        String title = scanner.nextLine();
-        System.out.println("Ввведіть,текст нотатки: ");
-        String bodynote = scanner.nextLine();
 
-        Note note = new Note(namenote, title, bodynote, formattedDate, formattedDate);
-        System.out.println("Нотатку успішно створено!");
+    }
+    public static void printTitleNote() {
+        System.out.println("Ввведіть заголовок для нотатки: ");
+
+    }
+    public static void printTextNote() {
+        System.out.println("Ввведіть,текст нотатки: ");
+
     }
 
     public static void WriteSaveInFileNote() {
         System.out.println("Бажаєте зберегти цю нотатку в файл?");
     }
-
-    public static void newProfile() {
+    public static void printYouHaveAccount() {
+        System.out.println("Ви вже зареєстровані?");
+    }
+    public static void printName() {
         System.out.println("Введіть своє ім'я: ");
-        String user = scanner.nextLine();
+    }
+    public static void printMAil() {
         System.out.println("Введіть свій емейл: ");
-        String mail = scanner.nextLine();
-        Profile person = new Profile(user, mail);
 
+    }
+    public static void checkEmail(String mail) {
         ProfileList Email = new ProfileList();
         int sameEmail = Email.checkEmail(mail);
         if (sameEmail==1){

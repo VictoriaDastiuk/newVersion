@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class NoteList {
 
@@ -65,25 +64,33 @@ public class NoteList {
          return id;
     }
 
-
-
-
     //   Зміна нотатки
     public static void changeNote (UUID ID, String param, String whatChange) {
                 Note note;
+        //  визначення сьогоднішньої дати
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = dateFormat.format(date);
+
+        note = NoteList.findInNoteListbyID(ID);
+        Objects.requireNonNull(note).setModifyDate(formattedDate);
+        Objects.requireNonNull(note).setStatusNote("Modified");
 
                 if (whatChange.equals("заголовок")) {
-                 note = NoteList.findInNoteListbyID(ID);
                  Objects.requireNonNull(note).setTitleNote(param);
                 }
                 if (whatChange.equals("назву")){
-                    note = NoteList.findInNoteListbyID(ID);
                     Objects.requireNonNull(note).setTitleNote(param);
                 }
                 if (whatChange.equals("текст")) {
-                    note = NoteList.findInNoteListbyID(ID);
                     Objects.requireNonNull(note).setTextNote(param);
                 }
+    }
+    public static void delNote (UUID ID) {
+        Note note;
+            note = NoteList.findInNoteListbyID(ID);
+            Objects.requireNonNull(note).setStatusNote("Deleted");
+
     }
 
 }

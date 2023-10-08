@@ -44,7 +44,25 @@ public class Note {
         this.statusNote = statusNote;
     }
 
-    public Note(String nameNote, String titleNote, String textNote, String addDate, String modifyDate) {
+    public String getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(String addDate) {
+        this.addDate = addDate;
+    }
+
+    public String getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(String modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+    public UUID getId() {
+        return id;
+    }
+    public Note(String nameNote, String titleNote, String textNote, String addDate, String modifyDate, UUID userID) {
         this.nameNote = nameNote;
         this.titleNote = titleNote;
         this.textNote = textNote;
@@ -52,9 +70,8 @@ public class Note {
         this.modifyDate = modifyDate;
         this.statusNote = "Created";
         this.id = UUID.randomUUID();
+        System.out.println("Нотатку успішно створено!");
     }
 
-    public UUID getId() {
-        return id;
-    }
+
 }

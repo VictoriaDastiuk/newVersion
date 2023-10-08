@@ -21,18 +21,3 @@ public class ProfileList {
         return sameEmail;
     }
 }
-//    public int checkEmail (){
-//        int i=0;
-//        if(emails.size()>1){
-//            while(i<emails.size()){
-//                if(emails.get(i).equals(email)){
-//                    emails.remove(i);
-//                    sameEmail = 1;
-//                    break;
-//                }
-//                i++;
-//            }
-//
-//        }
-//        return sameEmail;
-//    }

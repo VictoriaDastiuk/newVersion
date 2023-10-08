@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Profile {
     String Name;
     String email;
-    private UUID id;
+    private UUID userID;
 
     public String getName() {
         return Name;
@@ -19,8 +19,13 @@ public class Profile {
         Name = name;
     }
 
+    public UUID getUserID() {
+        return userID;
+    }
+
     public Profile(String Name, String email){
         this.Name=Name;
         this.email=email;
+        this.userID=UUID.randomUUID();
     }
    }

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main {
     static String doOther;
-    static String answer = "так";
+    static String answer;
     static String paramToFind;
     static String howFind;
     static UUID resultOfFindNote;
@@ -14,9 +14,26 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-    // Cтворення користувача і перевірка емейлу раніше використовуваних
-        WrittingForClient.newProfile();
+        WrittingForClient.printYouHaveAccount();
+        answer = scanner.nextLine();
 
+        if (answer.equals("нет")|| answer.equals("ні"))
+        {
+            // Cтворення користувача і перевірка емейлу раніше використовуваних
+            WrittingForClient.printName();
+            String user = scanner.nextLine();
+            WrittingForClient.printMAil();
+            String mail = scanner.nextLine();
+            Profile person = new Profile(user, mail);
+
+            WrittingForClient.checkEmail(mail);
+        }
+        else {
+            // ПОШУК профілю
+            WrittingForClient.printMAil();
+            String mail = scanner.nextLine();
+
+        }
         do {
             WrittingForClient.whatToDO();
             // Що хоче зробити створити нову, змінити стару, переглянути список нотаток, видалити?
@@ -24,22 +41,33 @@ public class Main {
 
             switch (answerWhatToDo) {
 
-
-
                 // СТВОРИТИ НОТАТКУ
                 case 1:
-                       // введіть назву, текст, заголовок
-                        WrittingForClient.newNote();
+                    //  визначення сьогоднішньої дати
+                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String formattedDate = dateFormat.format(date);
 
-                        // Зберегти в файл?
+                    // введіть назву, текст, заголовок
+                    WrittingForClient.printNameNote();
+                    String namenote = scanner.nextLine();
+                    WrittingForClient.printTitleNote();
+                    String title = scanner.nextLine();
+                    WrittingForClient.printTextNote();
+                    String bodynote = scanner.nextLine();
+
+                    Note note = new Note(namenote,title,bodynote,formattedDate,formattedDate,userID);
+
+                    // Зберегти в файл?
                         WrittingForClient.WriteSaveInFileNote();
                         String wantToSaveNote = scanner.nextLine();
 
                         if ((wantToSaveNote.equals("так")) || (wantToSaveNote.equals("да"))){
                             // тут має бути метод збереження нотатки в файл
                         }
-
-
+                        else {
+                            break;
+                        }
 
                 //ЗМІНИТИ НОТАТКУ
                 case 2:
@@ -73,20 +101,20 @@ public class Main {
                         NoteList.changeNote(resultOfFindNote,param,whatChange);
 
                         System.out.println("Нотатка успішно змінена.");
+                        break;
                     }
 
 
 
                 //ПЕРЕГЛЯНУТИ ВСІ НОТАТКИ
                 case 3:
-                        for (Note note : NoteList.getNoteList()) {
-                            if (note.getStatusNote().equals("Created") || note.getStatusNote().equals("Modified"))
+                        for (Note note1 : NoteList.getNoteList()) {
+                            if (note1.getStatusNote().equals("Created") || note1.getStatusNote().equals("Modified"))
                             {
-                                System.out.println(note.getNameNote() + ": " + note.getTitleNote() + " Текст нотатки:" + note.getTextNote());
+                                System.out.println(note1.getNameNote() + ": " + note1.getTitleNote() + " Текст нотатки:" + note1.getTextNote());
                             }
                         }
-
-
+                    break;
 
                 //ПЕРЕГЛЯНУТИ НОТАТКУ
                 case 4:
@@ -107,12 +135,10 @@ public class Main {
                     else {
                      WrittingForClient.showNote(resultOfFindNote);
                     }
-
-
+                    break;
 
                 //ВИДАЛИТИ НОТАТКУ
                 case 5:
-                    // по чому робим пошук нотатки?
                     WrittingForClient.howFind();
                     howFind = scanner.nextLine();
 
@@ -127,21 +153,23 @@ public class Main {
                         WrittingForClient.dontFind();
                     }
                     else {
-                        WrittingForClient.showNote(resultOfFindNote);
+                        NoteList.delNote(resultOfFindNote);
                     }
-
+                    break;
                 //ВИВАНТАЖИТИ НОТАТКИ
                 case 6:
 
-                    }
+                        break;
 
-            // Бажаєте ще якусь дію здійснити?
+            }
+// Бажаєте ще якусь дію здійснити?
             WrittingForClient.DoSmthMore();
             String doOther = scanner.nextLine();
-            if((doOther.equals("ні")) || (doOther.equals("нет"))) {
+            if((doOther.equals("ні")) || (doOther.equals("нет")))
+            {
+                System.out.println("Thanks for using app!");
                 break;
             }
-
     }while (doOther.equals("так")||doOther.equals("да"));
 }
 
