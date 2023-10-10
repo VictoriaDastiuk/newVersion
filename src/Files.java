@@ -3,7 +3,7 @@ import java.io.*;
 public class Files {
     File folder = new File("./Notes");
     public Files(String name, String title, String text, String UserID) throws IOException {
-        try(FileWriter SendInFile = new FileWriter("note"+ userID +".txt")) {
+        try(FileWriter SendInFile = new FileWriter("note"+ UserID +".txt")) {
             SendInFile.write(name);
             SendInFile.write(title);
             SendInFile.write(text);

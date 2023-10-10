@@ -56,15 +56,7 @@ public class WrittingForClient {
         System.out.println("Введіть свій емейл: ");
 
     }
-    public static void checkEmail(String mail) {
-        ProfileList Email = new ProfileList();
-        int sameEmail = Email.checkEmail(mail);
-        if (sameEmail==1){
-            System.out.println("Користувач з таким емейлом вже існує");
-        }else {
-            System.out.println("Ви успішно зареєстровані");
-        }
-    }
+
     public static void whatToDO() {
         System.out.println("Напишіть що бажаєте зробити:" +
                 "1 - створити нову" +
@@ -100,6 +92,12 @@ public class WrittingForClient {
 
     public static void DoSmthMore() {
         System.out.println("Бажаєте ще якусь дію здійснити з нотатками?");
+    }
+    public static void printProfileMade() {
+        System.out.println("Профіль створено");
+    }
+    public static void printProfileDontMade() {
+        System.out.println("Профіль не створено, спробуйте пізніше");
     }
 
     public static void showNote(UUID resultOfFindNote) {

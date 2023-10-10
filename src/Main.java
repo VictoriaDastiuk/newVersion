@@ -24,9 +24,19 @@ public class Main {
             String user = scanner.nextLine();
             WrittingForClient.printMAil();
             String mail = scanner.nextLine();
-            Profile person = new Profile(user, mail);
+            Profile person = new Profile();
+            int userId = person.getUserID();
 
-            WrittingForClient.checkEmail(mail);
+            ProfilesController resulMail = new ProfilesController();
+            boolean checkMail = resulMail.checkEmail(mail);
+            if (!checkMail) {
+                System.out.println("Емейл такий існує");
+            }
+            else {
+                ProfilesController.changeProfile(userId,user,mail);
+                System.out.println("Дякую за реєстрацію!");
+
+            }
         }
         else {
             // ПОШУК профілю
