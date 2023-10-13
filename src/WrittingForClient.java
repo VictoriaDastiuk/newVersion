@@ -52,6 +52,7 @@ public class WrittingForClient {
     public static void printName() {
         System.out.println("Введіть своє ім'я: ");
     }
+
     public static void printMAil() {
         System.out.println("Введіть свій емейл: ");
 

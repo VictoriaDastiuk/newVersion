@@ -8,5 +8,9 @@ public class ProfileList {
         return Profiles;
     }
 
+    public static void setProfiles(List<Profile> profiles) {
+        Profiles = profiles;
+    }
+
 
 }
