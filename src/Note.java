@@ -13,6 +13,8 @@ public class Note {
     private String statusNote;
     private UUID id;
 
+    int userID;
+
     public String getNameNote() {
         return nameNote;
     }
@@ -48,6 +50,14 @@ public class Note {
         return addDate;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     public void setAddDate(String addDate) {
         this.addDate = addDate;
     }
@@ -62,15 +72,10 @@ public class Note {
     public UUID getId() {
         return id;
     }
-    public Note(String nameNote, String titleNote, String textNote, String addDate, String modifyDate, UUID userID) {
-        this.nameNote = nameNote;
-        this.titleNote = titleNote;
-        this.textNote = textNote;
-        this.addDate = addDate;
-        this.modifyDate = modifyDate;
+    public Note(int userID) {
         this.statusNote = "Created";
         this.id = UUID.randomUUID();
-        System.out.println("Нотатку успішно створено!");
+        this.userID = userID;
     }
 
 

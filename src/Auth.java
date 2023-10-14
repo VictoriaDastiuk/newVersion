@@ -11,7 +11,7 @@ public class Auth {
         return answer;
     }
 
-    public boolean AuthForNewCustom(){
+    public static boolean AuthForNewCustom(){
         //перевірка емейлу раніше використовуваних
         WrittingForClient.printName();
         String user = scanner.nextLine();
@@ -19,10 +19,9 @@ public class Auth {
         String mail = scanner.nextLine();
 
         ProfilesController resultMail = new ProfilesController();
-        boolean checkEmail = resultMail.checkEmail(mail);
+        checkEmail = resultMail.checkEmail(mail);
         if (!checkEmail) {
             System.out.println("Емейл такий існує");
-
         } else {
             // Cтворення користувача
             ProfilesController Id = new ProfilesController();
@@ -46,11 +45,14 @@ public class Auth {
 
     public static void rePrintEmail(String answer){
         if (answer.equals("нет") || answer.equals("ні")) {
-            checkEmail = resultMail.checkEmail(mail);
-            checkEmail = ans.AuthForOldCustom();
+            boolean checkEmail = Auth.AuthForNewCustom();
         }
         else {
-            checkEmail = ans.AuthForOldCustom();
+            boolean checkEmail = Auth.AuthForNewCustom();
+        }
+
+        if (!checkEmail) {
+            System.out.println("Емейл такий існує в системі. Вибачаємо за не зручності, але реєатрацію не може бути проведено з цим емейлом. Гарного дня!");
         }
     }
 

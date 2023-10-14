@@ -113,4 +113,9 @@ public class WrittingForClient {
             System.out.println("У вас немає такої нотатки або ж вона вже видалена");
         }
     }
+
+    public static String howFindNote(){
+        WrittingForClient.howFind();
+        return scanner.nextLine();
+    }
 }

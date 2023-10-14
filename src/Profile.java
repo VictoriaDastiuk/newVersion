@@ -28,7 +28,7 @@ public class Profile {
     }
 
     public Profile(){
-        userID = ProfileList.getProfileList().size();
+        userID = ProfileList.getProfileList().size()+1;
     }
 
    }
