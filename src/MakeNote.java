@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,7 +7,7 @@ import java.util.UUID;
 
 public class MakeNote {
     static Scanner scanner = new Scanner(System.in);
-public static void makeNote(int userID) {
+public static void makeNote(int userID) throws IOException, ClassNotFoundException {
     //  визначення сьогоднішньої дати
     String formattedDate = NotesController.getDate();
 
@@ -22,14 +23,7 @@ public static void makeNote(int userID) {
     UUID ID = note.getId();
     NotesController.changeAllNote(ID,title,name,text);
 
-    // Зберегти в файл?
-    WrittingForClient.WriteSaveInFileNote();
-    String wantToSaveNote = scanner.nextLine();
-
-    if ((wantToSaveNote.equals("так")) || (wantToSaveNote.equals("да"))) {
-        // тут має бути метод збереження нотатки в файл
-    }
-
-
+    // додавання в файл нотатки
+    FilesNotes.AddNoteInFile(userID, ID);
     }
 }

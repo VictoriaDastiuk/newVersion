@@ -11,7 +11,7 @@ public class Main {
     static UUID resultOfFindNote;
     static String whatChange;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 ModelOfProject.MyNotes();
 
 

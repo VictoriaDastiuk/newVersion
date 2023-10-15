@@ -1,5 +1,6 @@
 import com.sun.org.apache.xpath.internal.operations.Mod;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,8 +19,7 @@ public class ModelOfProject {
     static String whatChange;
     static boolean  checkEmail;
 
-    public static void MyNotes()
-    {
+    public static void MyNotes() throws IOException, ClassNotFoundException {
         //починається авторизація
         Auth ans = new Auth();
         answer = ans.startAuth();

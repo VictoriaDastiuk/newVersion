@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Auth {
@@ -11,7 +12,7 @@ public class Auth {
         return answer;
     }
 
-    public static boolean AuthForNewCustom(){
+    public static boolean AuthForNewCustom() throws IOException {
         //перевірка емейлу раніше використовуваних
         WrittingForClient.printName();
         String user = scanner.nextLine();
@@ -27,6 +28,7 @@ public class Auth {
             ProfilesController Id = new ProfilesController();
             int userId = Id.createProfile();
             ProfilesController.changeProfile(userId, user, mail);
+            FilesNotes.NewNotesFile(userId);
         }
         return checkEmail;
     }
@@ -43,7 +45,7 @@ public class Auth {
         return resultMail.checkEmail(mail);
     }
 
-    public static void rePrintEmail(String answer){
+    public static void rePrintEmail(String answer) throws IOException {
         if (answer.equals("нет") || answer.equals("ні")) {
             boolean checkEmail = Auth.AuthForNewCustom();
         }
